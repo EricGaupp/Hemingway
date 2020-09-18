@@ -7,7 +7,7 @@ import "antd/dist/antd.css";
 import * as serviceWorker from "./serviceWorker";
 
 const client = new ApolloClient({
-  uri: "https://agreeable-sand-09b57040f.azurestaticapps.net",
+  uri: "/api/login",
   cache: new InMemoryCache(),
 });
 
