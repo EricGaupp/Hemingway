@@ -19,4 +19,9 @@ const server = new ApolloServer({
   resolvers,
   // playground: process.env.NODE_ENV === "development",
 });
-export default server.createHandler();
+export default server.createHandler({
+  cors: {
+    origin: "*",
+    credentials: true,
+  },
+});
