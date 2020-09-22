@@ -11,24 +11,33 @@ const helloWorld = gql`
 const App: React.FC = () => {
   const { loading, error, data } = useQuery(helloWorld);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :(</p>;
+  if (loading) return <h4>Loading</h4>;
+  if (error) {
+    console.log(error);
+    return <h4>Error</h4>;
+  }
 
-  return <p>{data}</p>;
-  // return (
-  //   <>
-  //     <Link to="/login">Login</Link>
-  //     <Link to="/register">Register</Link>
-  //     <Switch>
-  //       <Route exact path="/login">
-  //         Login
-  //       </Route>
-  //       <Route exact path="/register">
-  //         Register
-  //       </Route>
-  //     </Switch>
-  //   </>
-  // );
+  return <h4>{data["helloWorld"]}</h4>;
 };
+// const { loading, error, data } = useQuery(helloWorld);
+
+// if (loading) return <p>Loading...</p>;
+// if (error) return <p>Error :(</p>;
+
+// return <p>{data}</p>;
+// return (
+//   <>
+//     <Link to="/login">Login</Link>
+//     <Link to="/register">Register</Link>
+//     <Switch>
+//       <Route exact path="/login">
+//         Login
+//       </Route>
+//       <Route exact path="/register">
+//         Register
+//       </Route>
+//     </Switch>
+//   </>
+// );
 
 export default App;

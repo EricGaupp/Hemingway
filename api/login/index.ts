@@ -8,20 +8,13 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
-    helloWorld() {
-      return "Hello world!";
-    },
+    helloWorld: () => "Hello World!",
   },
 };
 
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  // playground: process.env.NODE_ENV === "development",
 });
-export default server.createHandler({
-  cors: {
-    origin: "*",
-    credentials: true,
-  },
-});
+
+module.exports = server.createHandler();
