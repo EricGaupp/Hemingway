@@ -7,7 +7,7 @@ import "antd/dist/antd.css";
 import * as serviceWorker from "./serviceWorker";
 
 const client = new ApolloClient({
-  uri: "http://localhost:7071/api/login",
+  uri: "/api/login",
   cache: new InMemoryCache(),
 });
 
