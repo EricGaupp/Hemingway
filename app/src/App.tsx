@@ -5,12 +5,17 @@ import { useQuery, gql } from "@apollo/client";
 const helloWorld = gql`
   query helloWorld {
     helloWorld
-    imindanger
+  }
+`;
+
+const danger = gql`
+  query danger {
+    danger
   }
 `;
 
 const DangerRoute: React.FC = () => {
-  const { loading, error, data } = useQuery(helloWorld);
+  const { loading, error, data } = useQuery(danger);
 
   if (loading) return <h4>Loading</h4>;
   if (error) {
