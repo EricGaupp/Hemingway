@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
-import "antd/dist/antd.css";
+import "./styles/tailwind.css";
 import * as serviceWorker from "./serviceWorker";
 
 const client = new ApolloClient({
