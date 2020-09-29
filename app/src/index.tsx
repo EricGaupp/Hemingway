@@ -6,17 +6,17 @@ import App from "./App";
 import "./styles/tailwind.css";
 import * as serviceWorker from "./serviceWorker";
 
-const client = new ApolloClient({
-  uri: "/api/graphql",
-  cache: new InMemoryCache(),
-});
+// const client = new ApolloClient({
+//   uri: "/api/graphql",
+//   cache: new InMemoryCache(),
+// });
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <ApolloProvider client={client}>
-        <App />
-      </ApolloProvider>
+      {/* <ApolloProvider client={client}> */}
+      <App />
+      {/* </ApolloProvider> */}
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")

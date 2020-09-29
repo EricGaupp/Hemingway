@@ -1,18 +1,27 @@
+import { gql, useQuery } from "@apollo/client";
 import React from "react";
-import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Homepage from "./components/Homepage";
 import Login from "./components/Login";
 
-const App: React.FC = () => {
+const App = () => {
   return (
-    <Switch>
-      <Route exact path="/">
-        <Link to="/login">
-          <h3>Login</h3>
-        </Link>
-        <h5>Homepage</h5>
-      </Route>
-      <Route exact path="/login" component={Login} />
-    </Switch>
+    <>
+      <Navbar />
+      <Switch>
+        <Route exact path="/">
+          {/* <Homepage /> */}
+          <h5>Homepage</h5>
+        </Route>
+        <Route exact path="/login">
+          <Login />
+        </Route>
+        <Route exact path="/dash">
+          <h5>Dashboard</h5>
+        </Route>
+      </Switch>
+    </>
   );
 };
 
