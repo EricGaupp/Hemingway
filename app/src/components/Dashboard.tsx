@@ -35,15 +35,15 @@ const GraphQLData = () => {
 
 const Dashboard = () => {
   const [user, setUser] = useState<IUser | null>(null);
-  //   useEffect(() => {
-  //     const fetchAuth = async () => {
-  //       const response = await fetch("/.auth/me");
-  //       const payload = await response.json();
-  //       const { clientPrincipal } = payload;
-  //       setUser(clientPrincipal);
-  //     };
-  //     fetchAuth();
-  //   }, []);
+  useEffect(() => {
+    const fetchAuth = async () => {
+      const response = await fetch("/.auth/me");
+      const payload = await response.json();
+      const { clientPrincipal } = payload;
+      setUser(clientPrincipal);
+    };
+    fetchAuth();
+  }, []);
 
   return (
     <div>
