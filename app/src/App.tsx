@@ -2,7 +2,7 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
-// import Homepage from "./components/Homepage";
+import Homepage from "./components/Homepage";
 import Login from "./components/Login";
 
 const App = () => {
@@ -11,8 +11,7 @@ const App = () => {
       <Navbar />
       <Switch>
         <Route exact path="/">
-          {/* <Homepage /> */}
-          <h5>Homepage</h5>
+          <Homepage />
         </Route>
         <Route exact path="/login">
           <Login />
