@@ -7,8 +7,9 @@ const Homepage = () => {
       const response = await fetch("/.auth/me");
       console.log(response);
       const payload = await response.json();
-      const { clientPrincipal } = payload;
-      setUser(clientPrincipal);
+      console.log(payload);
+      //   const { clientPrincipal } = payload;
+      //   setUser(clientPrincipal);
     };
     fetchAuth();
   }, []);
