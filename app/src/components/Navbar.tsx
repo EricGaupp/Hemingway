@@ -37,6 +37,7 @@ const Navbar = () => {
       <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto lg:justify-end">
         <div className="text-sm px-4 py-2 leading-none text-white mt-4 lg:mt-0">
           <Link to="/login">Login</Link>
+          <a href="/.auth/logout">Logout</a>
         </div>
       </div>
     </nav>
