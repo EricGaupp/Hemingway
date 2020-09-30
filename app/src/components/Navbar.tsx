@@ -1,10 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-interface NavbarProps {
-  name: string;
-}
-
 const Navbar = () => {
   return (
     <nav className="flex items-center justify-between flex-wrap bg-teal-500 p-6">
@@ -37,6 +33,8 @@ const Navbar = () => {
       <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto lg:justify-end">
         <div className="text-sm px-4 py-2 leading-none text-white mt-4 lg:mt-0">
           <Link to="/login">Login</Link>
+        </div>
+        <div className="text-sm px-4 py-2 leading-none text-white mt-4 lg:mt-0">
           <a href="/.auth/logout">Logout</a>
         </div>
       </div>
