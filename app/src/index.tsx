@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
+import { AuthProvider } from "./hooks/useAuth";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import App from "./App";
 import "./styles/tailwind.css";
@@ -14,9 +15,11 @@ const client = new ApolloClient({
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <ApolloProvider client={client}>
-        <App />
-      </ApolloProvider>
+      <AuthProvider>
+        <ApolloProvider client={client}>
+          <App />
+        </ApolloProvider>
+      </AuthProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
