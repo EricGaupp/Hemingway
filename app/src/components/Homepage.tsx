@@ -6,11 +6,19 @@ const Homepage = () => {
   return (
     <div>
       <h5>Homepage</h5>
-      <p>
-        {user?.userDetails
-          ? `Authenticated: ${user.userDetails}`
-          : "Not Authenticated!"}
-      </p>
+      {user?.userDetails ? (
+        <>
+          <p>Authenticated:</p>
+          <ul>
+            <li>{user.userId}</li>
+            <li>{user.userDetails}</li>
+            <li>{user.identityProvider}</li>
+            <li>{user.userRoles.join(" & ")}</li>
+          </ul>
+        </>
+      ) : (
+        <p>"Not Authenticated!"</p>
+      )}
     </div>
   );
 };
