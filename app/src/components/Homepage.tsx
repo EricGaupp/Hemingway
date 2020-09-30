@@ -8,8 +8,9 @@ const Homepage = () => {
       console.log(response);
       const payload = await response.json();
       console.log(payload);
-      //   const { clientPrincipal } = payload;
-      //   setUser(clientPrincipal);
+      const { clientPrincipal } = payload;
+      const { userId } = clientPrincipal;
+      setUser(userId);
     };
     fetchAuth();
   }, []);
