@@ -3,9 +3,9 @@ import { Route, Redirect, RouteProps } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 
 const PrivateRoute = ({ component: Component, ...rest }: RouteProps) => {
-  const { user } = useAuth();
+  const { user, fetching } = useAuth();
 
-  //TODO Redirect string possible with redirect URI from OAuth
+  if (fetching) return null;
   return (
     <Route
       {...rest}
