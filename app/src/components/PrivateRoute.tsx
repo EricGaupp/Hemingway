@@ -5,6 +5,7 @@ import { useAuth } from "../hooks/useAuth";
 const PrivateRoute = ({ component: Component, ...rest }: RouteProps) => {
   const { user } = useAuth();
 
+  //TODO Redirect string possible with redirect URI from OAuth
   return (
     <Route
       {...rest}

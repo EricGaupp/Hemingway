@@ -43,7 +43,11 @@ const Navbar = () => {
         </div>
         <div className="text-sm px-4 py-2 leading-none text-white mt-4 lg:mt-0">
           {user?.userId ? (
-            <a href="/.auth/logout">Logout</a>
+            <a
+              href={`/logout?post_logout_redirect_uri=${process.env.REACT_APP_BASE_URI}`}
+            >
+              Logout
+            </a>
           ) : (
             <Link to="/login">Login</Link>
           )}

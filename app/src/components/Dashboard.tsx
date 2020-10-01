@@ -1,5 +1,6 @@
 import React from "react";
 import { gql, useQuery } from "@apollo/client";
+import { Author } from "../types/types";
 
 const authorsQuery = gql`
   query {
@@ -19,7 +20,7 @@ const GraphQLData = () => {
   }
   return (
     <ul>
-      {data.authors.map((author: any) => (
+      {data.authors.map((author: Author) => (
         <li key={author.id}>{author.name}</li>
       ))}
     </ul>

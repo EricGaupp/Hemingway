@@ -5,12 +5,12 @@ type AuthContextProps = {
   fakeSignIn: () => void;
 };
 
-interface IUserDetails {
+type IUserDetails = {
   identityProvider: string;
   userId: string;
   userDetails: string;
   userRoles: string[];
-}
+};
 
 const authContext = createContext<Partial<AuthContextProps>>({});
 
@@ -47,7 +47,11 @@ const useProvideAuth = () => {
   };
 };
 
-export const AuthProvider = ({ children }: { children: any }) => {
+type AuthProviderProps = {
+  children: React.ReactNode;
+};
+
+export const AuthProvider = ({ children }: AuthProviderProps) => {
   const auth = useProvideAuth();
   return <authContext.Provider value={auth}>{children}</authContext.Provider>;
 };

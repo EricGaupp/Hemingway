@@ -1,6 +1,33 @@
 {
   "routes": [
-    { "route": "/api/*", "allowedRoles": ["user"] },
+    {
+      "route": "/login/aad",
+      "serve": "/.auth/login/aad"
+    },
+    {
+      "route": "/login/facebook",
+      "serve": "/.auth/login/facebook"
+    },
+    {
+      "route": "/login/github",
+      "serve": "/.auth/login/github"
+    },
+    {
+      "route": "/login/google",
+      "serve": "/.auth/login/google"
+    },
+    {
+      "route": "/login/twitter",
+      "serve": "/.auth/login/twitter"
+    },
+    {
+      "route": "/logout",
+      "serve": "/.auth/logout"
+    },
+    {
+      "route": "/api/*",
+      "allowedRoles": ["user"]
+    },
     {
       "route": "/*",
       "serve": "/index.html",
