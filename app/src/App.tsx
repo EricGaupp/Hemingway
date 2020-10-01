@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Homepage from "./components/Homepage";
 import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
+import PrivateRoute from "./components/PrivateRoute";
 
 const App = () => {
   return (
@@ -13,12 +14,8 @@ const App = () => {
         <Route exact path="/">
           <Homepage />
         </Route>
-        <Route exact path="/login">
-          <Login />
-        </Route>
-        <Route exact path="/dashboard">
-          <Dashboard />
-        </Route>
+        <Route exact path="/login" component={Login} />
+        <PrivateRoute exact path="/dashboard" component={Dashboard} />
       </Switch>
     </>
   );

@@ -1,6 +1,8 @@
 import React from "react";
+import { useAuth } from "../hooks/useAuth";
 
 const Login = () => {
+  const { fakeSignIn } = useAuth();
   return (
     <div className="container mx-auto flex flex-col">
       <a
@@ -28,6 +30,7 @@ const Login = () => {
       >
         Twitter
       </a>
+      <button onClick={fakeSignIn}>Fake Auth</button>
     </div>
   );
 };

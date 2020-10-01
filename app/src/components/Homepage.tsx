@@ -17,7 +17,7 @@ const Homepage = () => {
           </ul>
         </>
       ) : (
-        <p>"Not Authenticated!"</p>
+        <p>Not Authenticated!</p>
       )}
     </div>
   );

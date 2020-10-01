@@ -2,6 +2,7 @@ import React, { createContext, useEffect, useState, useContext } from "react";
 
 type AuthContextProps = {
   user: IUserDetails | null;
+  fakeSignIn: () => void;
 };
 
 interface IUserDetails {
@@ -14,7 +15,21 @@ interface IUserDetails {
 const authContext = createContext<Partial<AuthContextProps>>({});
 
 const useProvideAuth = () => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<IUserDetails>({
+    identityProvider: "",
+    userId: "",
+    userDetails: "",
+    userRoles: [],
+  });
+
+  const fakeSignIn = () => {
+    setUser({
+      userId: "1",
+      userDetails: "Eric.Gaupp@FakeAuth.com",
+      identityProvider: "FakeAuth",
+      userRoles: ["Fake Role"],
+    });
+  };
 
   useEffect(() => {
     const fetchAuth = async () => {
@@ -23,11 +38,12 @@ const useProvideAuth = () => {
       const { clientPrincipal } = payload;
       setUser(clientPrincipal);
     };
-    fetchAuth();
+    if (process.env.NODE_ENV !== "development") fetchAuth();
   }, []);
 
   return {
     user,
+    fakeSignIn,
   };
 };
 

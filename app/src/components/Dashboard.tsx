@@ -26,19 +26,15 @@ const GraphQLData = () => {
   );
 };
 
-const Dashboard = () => {
-  return (
-    <div>
-      {/* <h3>Homepage</h3>
-      {user?.userId ? (
-        <h5>Authenticated: {user.userId}</h5>
-      ) : (
-        <h5>Unauthenticated</h5>
-      )} */}
-      <h4>GraphQL Data</h4>
-      <GraphQLData />
-    </div>
-  );
-};
+class Dashboard extends React.Component<{}, {}> {
+  render() {
+    return (
+      <div>
+        <h4>GraphQL Data</h4>
+        <GraphQLData />
+      </div>
+    );
+  }
+}
 
 export default Dashboard;
