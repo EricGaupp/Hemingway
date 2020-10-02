@@ -33,15 +33,16 @@ const useProvideAuth = () => {
     });
   };
 
+  const fetchAuth = async () => {
+    setFetching(true);
+    const response = await fetch("/.auth/me");
+    const payload = await response.json();
+    const { clientPrincipal } = payload;
+    setUser(clientPrincipal);
+    setFetching(false);
+  };
+
   useEffect(() => {
-    const fetchAuth = async () => {
-      setFetching(true);
-      const response = await fetch("/.auth/me");
-      const payload = await response.json();
-      const { clientPrincipal } = payload;
-      setUser(clientPrincipal);
-      setFetching(false);
-    };
     if (process.env.NODE_ENV !== "development") fetchAuth();
   }, []);
 
