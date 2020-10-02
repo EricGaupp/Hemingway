@@ -1,8 +1,11 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 
 const Login = () => {
-  const { fakeSignIn } = useAuth();
+  const { user, fakeSignIn } = useAuth();
+
+  if (user?.userId) return <Redirect to="/dashboard" />;
   return (
     <div className="container mx-auto flex flex-col">
       <a
