@@ -21,7 +21,7 @@ const Login = () => {
         GitHub
       </a>
       <a
-        href={`/login/google?post_login_redirect_uri=${process.env.REACT_APP_BASE_URI}`}
+        href={`/login/google?post_login_redirect_uri=${process.env.REACT_APP_BASE_URI}/dashboard`}
       >
         Google
       </a>

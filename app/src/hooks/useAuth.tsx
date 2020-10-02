@@ -16,6 +16,7 @@ type IUserDetails = {
 const authContext = createContext<Partial<AuthContextProps>>({});
 
 const useProvideAuth = () => {
+  const [fetching, setFetching] = useState(true);
   const [user, setUser] = useState<IUserDetails>({
     identityProvider: "",
     userId: "",
@@ -33,10 +34,12 @@ const useProvideAuth = () => {
   };
 
   const fetchAuth = async () => {
+    setFetching(true);
     const response = await fetch("/.auth/me");
     const payload = await response.json();
     const { clientPrincipal } = payload;
     setUser(clientPrincipal);
+    setFetching(false);
   };
 
   useEffect(() => {
@@ -45,6 +48,7 @@ const useProvideAuth = () => {
 
   return {
     user,
+    fetching,
     fakeSignIn,
   };
 };
