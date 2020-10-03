@@ -3,9 +3,9 @@ import { Redirect } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 
 const Login = () => {
-  const { user, fakeSignIn } = useAuth();
+  const { authenticated, fakeSignIn } = useAuth();
 
-  if (user?.userId) return <Redirect to="/dashboard" />;
+  if (authenticated) return <Redirect to="/dashboard" />;
   return (
     <div className="container mx-auto flex flex-col">
       <a
