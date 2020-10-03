@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 
 const Navbar = () => {
-  const { user } = useAuth();
+  const { user, authenticated } = useAuth();
   return (
     <nav className="flex items-center justify-between flex-wrap bg-teal-500 p-6">
       <div className="flex items-center flex-shrink-0 text-white mr-6">
@@ -42,7 +42,7 @@ const Navbar = () => {
           <Link to="/dashboard">Dashboard</Link>
         </div>
         <div className="text-sm px-4 py-2 leading-none text-white mt-4 lg:mt-0">
-          {user?.userId ? (
+          {authenticated ? (
             <a
               href={`/logout?post_logout_redirect_uri=${process.env.REACT_APP_BASE_URI}`}
             >

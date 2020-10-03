@@ -3,14 +3,13 @@ import { Route, Redirect, RouteProps } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 
 const PrivateRoute = ({ component: Component, ...rest }: RouteProps) => {
-  const { user, fetching } = useAuth();
+  const { authenticated } = useAuth();
 
-  if (fetching) return null;
   return (
     <Route
       {...rest}
       render={(props) =>
-        user?.userId && Component ? (
+        authenticated && Component ? (
           <Component {...props} />
         ) : (
           <Redirect to="/login" />

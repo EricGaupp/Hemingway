@@ -19,11 +19,6 @@ const Login = () => {
         Facebook
       </a>
       <a
-        href={`/login/github?post_login_redirect_uri=${process.env.REACT_APP_BASE_URI}/dashboard`}
-      >
-        GitHub
-      </a>
-      <a
         href={`/login/google?post_login_redirect_uri=${process.env.REACT_APP_BASE_URI}/dashboard`}
       >
         Google

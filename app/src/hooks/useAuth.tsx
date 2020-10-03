@@ -2,6 +2,7 @@ import React, { createContext, useEffect, useState, useContext } from "react";
 
 type AuthContextProps = {
   user: IUserDetails | null;
+  authenticated: boolean;
   fetching: boolean;
   fakeSignIn: () => void;
 };
@@ -23,6 +24,7 @@ const useProvideAuth = () => {
     userDetails: "",
     userRoles: [],
   });
+  const [authenticated, setAuthenticated] = useState(false);
 
   const fakeSignIn = () => {
     setUser({
@@ -31,6 +33,7 @@ const useProvideAuth = () => {
       identityProvider: "FakeAuth",
       userRoles: ["Fake Role"],
     });
+    setAuthenticated(true);
   };
 
   const fetchAuth = async () => {
@@ -38,7 +41,15 @@ const useProvideAuth = () => {
     const response = await fetch("/.auth/me");
     const payload = await response.json();
     const { clientPrincipal } = payload;
+    //Authenticate via proper role
     setUser(clientPrincipal);
+    if (
+      clientPrincipal.userRoles.filter((role: string) => {
+        return role === "user";
+      }).length > 0
+    ) {
+      setAuthenticated(true);
+    }
     setFetching(false);
   };
 
@@ -49,6 +60,7 @@ const useProvideAuth = () => {
   return {
     user,
     fetching,
+    authenticated,
     fakeSignIn,
   };
 };
