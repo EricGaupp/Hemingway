@@ -1,7 +1,7 @@
-import React from "react";
+import React, { Suspense } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
-import { AuthProvider } from "./hooks/useAuth";
+import { authContext, fetchUserAuth } from "./hooks/useAuth";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import App from "./App";
 import "./styles/tailwind.css";
@@ -12,14 +12,24 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+const resource = fetchUserAuth();
+
+const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+  const auth = resource.auth.read();
+
+  return <authContext.Provider value={auth}>{children}</authContext.Provider>;
+};
+
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <AuthProvider>
-        <ApolloProvider client={client}>
-          <App />
-        </ApolloProvider>
-      </AuthProvider>
+      <Suspense fallback={<h1>Fetching auth...</h1>}>
+        <AuthProvider>
+          <ApolloProvider client={client}>
+            <App />
+          </ApolloProvider>
+        </AuthProvider>
+      </Suspense>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
