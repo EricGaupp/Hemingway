@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "../hooks/useAuth";
+import { authResource } from "../index";
 
 const Navbar = () => {
-  const { user, authenticated } = useAuth();
+  const auth = authResource.auth.read();
+
   return (
     <nav className="flex items-center justify-between flex-wrap bg-teal-500 p-6">
       <div className="flex items-center flex-shrink-0 text-white mr-6">
@@ -16,9 +17,9 @@ const Navbar = () => {
         >
           <path d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z" />
         </svg>
-        {user?.userId && (
+        {auth.user?.userId && (
           <span className="font-semibold text-xl tracking-tight">
-            {`Hi, ${user.userDetails}`}
+            {`Hi, ${auth.user.userDetails}`}
           </span>
         )}
       </div>
@@ -42,7 +43,7 @@ const Navbar = () => {
           <Link to="/dashboard">Dashboard</Link>
         </div>
         <div className="text-sm px-4 py-2 leading-none text-white mt-4 lg:mt-0">
-          {authenticated ? (
+          {auth.authenticated ? (
             <a
               href={`/logout?post_logout_redirect_uri=${process.env.REACT_APP_BASE_URI}`}
             >

@@ -1,9 +1,6 @@
-import { createContext, useContext } from "react";
-
 type AuthContextProps = {
   user: IUserDetails | null;
   authenticated: boolean;
-  fakeSignIn: () => void;
 };
 
 type IUserDetails = {
@@ -11,12 +8,6 @@ type IUserDetails = {
   userId: string;
   userDetails: string;
   userRoles: string[];
-};
-
-export const authContext = createContext<Partial<AuthContextProps>>({});
-
-export const useAuth = () => {
-  return useContext(authContext);
 };
 
 export function fetchUserAuth() {
@@ -43,30 +34,14 @@ function wrapPromise(promise: Promise<IUserDetails>) {
   let suspender = promise.then(
     (r) => {
       status = "success";
-      result = r
+      result = r?.userId
         ? {
             authenticated: true,
             user: { ...r },
-            fakeSignIn() {
-              this.user = {
-                userId: "1",
-                userDetails: "Eric.Gaupp@FakeAuth.com",
-                identityProvider: "FakeAuth",
-                userRoles: ["Fake Role"],
-              };
-            },
           }
         : {
             authenticated: false,
             user: null,
-            fakeSignIn() {
-              this.user = {
-                userId: "1",
-                userDetails: "Eric.Gaupp@FakeAuth.com",
-                identityProvider: "FakeAuth",
-                userRoles: ["Fake Role"],
-              };
-            },
           };
     },
     (e) => {

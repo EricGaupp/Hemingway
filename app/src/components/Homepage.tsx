@@ -1,11 +1,12 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
-import { useAuth } from "../hooks/useAuth";
+import { authResource } from "../index";
 
 const Homepage = () => {
-  const { authenticated } = useAuth();
-  //Put Redirect here in case user is logged in?
-  if (authenticated) return <Redirect to="/dashboard" />;
+  const auth = authResource.auth.read();
+
+  if (auth.authenticated) return <Redirect to="/dashboard" />;
+
   return (
     <div>
       <h5>Homepage</h5>

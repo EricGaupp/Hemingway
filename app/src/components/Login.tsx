@@ -1,11 +1,11 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
-import { useAuth } from "../hooks/useAuth";
+import { authResource } from "../index";
 
 const Login = () => {
-  const { authenticated, fakeSignIn } = useAuth();
+  const auth = authResource.auth.read();
 
-  if (authenticated) return <Redirect to="/dashboard" />;
+  if (auth.authenticated) return <Redirect to="/dashboard" />;
   return (
     <div className="container mx-auto flex flex-col">
       <a
@@ -28,7 +28,6 @@ const Login = () => {
       >
         Twitter
       </a>
-      <button onClick={fakeSignIn}>Fake Auth</button>
     </div>
   );
 };
