@@ -43,18 +43,31 @@ function wrapPromise(promise: Promise<IUserDetails>) {
   let suspender = promise.then(
     (r) => {
       status = "success";
-      result = {
-        authenticated: true,
-        user: { ...r },
-        fakeSignIn() {
-          this.user = {
-            userId: "1",
-            userDetails: "Eric.Gaupp@FakeAuth.com",
-            identityProvider: "FakeAuth",
-            userRoles: ["Fake Role"],
+      result = r
+        ? {
+            authenticated: true,
+            user: { ...r },
+            fakeSignIn() {
+              this.user = {
+                userId: "1",
+                userDetails: "Eric.Gaupp@FakeAuth.com",
+                identityProvider: "FakeAuth",
+                userRoles: ["Fake Role"],
+              };
+            },
+          }
+        : {
+            authenticated: false,
+            user: null,
+            fakeSignIn() {
+              this.user = {
+                userId: "1",
+                userDetails: "Eric.Gaupp@FakeAuth.com",
+                identityProvider: "FakeAuth",
+                userRoles: ["Fake Role"],
+              };
+            },
           };
-        },
-      };
     },
     (e) => {
       status = "error";
