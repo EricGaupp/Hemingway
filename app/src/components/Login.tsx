@@ -1,9 +1,9 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
-import { authResource } from "../index";
+import { useAuth } from "../hooks/useAuth";
 
 const Login = () => {
-  const auth = authResource.auth.read();
+  const auth = useAuth();
 
   if (auth.authenticated) return <Redirect to="/dashboard" />;
   return (

@@ -1,9 +1,9 @@
 import React from "react";
 import { Route, Redirect, RouteProps } from "react-router-dom";
-import { authResource } from "../index";
+import { useAuth } from "../hooks/useAuth";
 
 const PrivateRoute = ({ component: Component, ...rest }: RouteProps) => {
-  const auth = authResource.auth.read();
+  const auth = useAuth();
 
   return (
     <Route

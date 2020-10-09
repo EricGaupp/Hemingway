@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { authResource } from "../index";
+import { useAuth } from "../hooks/useAuth";
 
 const Navbar = () => {
-  const auth = authResource.auth.read();
+  const auth = useAuth();
 
   return (
     <nav className="flex items-center justify-between flex-wrap bg-teal-500 p-6">
@@ -36,12 +36,6 @@ const Navbar = () => {
         </button>
       </div>
       <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto lg:justify-end">
-        <div className="text-sm px-4 py-2 leading-none text-white mt-4 lg:mt-0">
-          <Link to="/">Home</Link>
-        </div>
-        <div className="text-sm px-4 py-2 leading-none text-white mt-4 lg:mt-0">
-          <Link to="/dashboard">Dashboard</Link>
-        </div>
         <div className="text-sm px-4 py-2 leading-none text-white mt-4 lg:mt-0">
           {auth.authenticated ? (
             <a
