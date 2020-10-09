@@ -28,6 +28,7 @@ const Login = () => {
       >
         Twitter
       </a>
+      <button onClick={() => auth.fakeSignIn()}>Fake Login</button>
     </div>
   );
 };

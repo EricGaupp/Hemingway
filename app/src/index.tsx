@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
-import { authContext, AuthContextProps, IUserDetails } from "./hooks/useAuth";
+import { authContext, IUserDetails } from "./hooks/useAuth";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import App from "./App";
 import "./styles/tailwind.css";
@@ -15,33 +15,55 @@ const client = new ApolloClient({
 const authPromise =
   process.env.NODE_ENV === "development"
     ? new Promise<IUserDetails | null>((resolve) => {
-        setTimeout(() => {
-          resolve({
-            userId: "1",
-            userDetails: "Eric.Gaupp@FakeAuth.com",
-            identityProvider: "FakeAuth",
-            userRoles: ["Fake Role"],
-          });
-        });
+        resolve(null);
       })
     : fetch("/.auth/me").then((res) => res.json());
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [auth, setAuth] = useState<AuthContextProps>({
-    authenticated: false,
-    user: null,
+  const [authenticated, setAuthenticated] = useState<boolean>(false);
+  const [user, setUser] = useState<IUserDetails>({
+    userId: "",
+    userDetails: "",
+    identityProvider: "",
+    userRoles: [],
   });
+
+  function fakeSignIn() {
+    setUser({
+      userId: "1",
+      userDetails: "Eric.Gaupp@FakeAuth.com",
+      identityProvider: "FakeAuth",
+      userRoles: ["Fake Role"],
+    });
+    setAuthenticated(true);
+  }
+
+  function fakeSignOut() {
+    setUser({
+      userId: "",
+      userDetails: "",
+      identityProvider: "",
+      userRoles: [],
+    });
+    setAuthenticated(false);
+  }
+
   useEffect(() => {
-    let auth: AuthContextProps = { authenticated: false, user: null };
     authPromise.then((authData: IUserDetails) => {
       if (authData?.userId) {
-        auth.authenticated = true;
-        auth.user = { ...authData };
+        console.log("found user id");
+        setUser(authData);
+        setAuthenticated(true);
       }
-      setAuth(auth);
     });
   }, []);
-  return <authContext.Provider value={auth}>{children}</authContext.Provider>;
+  return (
+    <authContext.Provider
+      value={{ authenticated, user, fakeSignIn, fakeSignOut }}
+    >
+      {children}
+    </authContext.Provider>
+  );
 };
 
 ReactDOM.render(
