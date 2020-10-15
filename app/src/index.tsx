@@ -21,6 +21,7 @@ const authPromise =
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [authenticated, setAuthenticated] = useState<boolean>(false);
+  const [fetching, setFetching] = useState<boolean>(true);
   const [user, setUser] = useState<IUserDetails>({
     userId: "",
     userDetails: "",
@@ -36,6 +37,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       userRoles: ["Fake Role"],
     });
     setAuthenticated(true);
+    setFetching(false);
   }
 
   function fakeSignOut() {
@@ -55,11 +57,12 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         setUser(authData);
         setAuthenticated(true);
       }
+      setFetching(false);
     });
   }, []);
   return (
     <authContext.Provider
-      value={{ authenticated, user, fakeSignIn, fakeSignOut }}
+      value={{ authenticated, fetching, user, fakeSignIn, fakeSignOut }}
     >
       {children}
     </authContext.Provider>

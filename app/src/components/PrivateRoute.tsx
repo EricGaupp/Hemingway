@@ -5,6 +5,7 @@ import { useAuth } from "../hooks/useAuth";
 const PrivateRoute = ({ component: Component, ...rest }: RouteProps) => {
   const auth = useAuth();
 
+  if (auth.fetching) return <h3>Fetching auth...</h3>;
   return (
     <Route
       {...rest}

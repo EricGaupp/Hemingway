@@ -2,6 +2,7 @@ import { createContext, useContext } from "react";
 
 export type AuthContextProps = {
   user: IUserDetails | null;
+  fetching: boolean;
   authenticated: boolean;
   fakeSignIn: () => void;
   fakeSignOut: () => void;
