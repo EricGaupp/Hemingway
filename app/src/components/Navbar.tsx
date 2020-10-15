@@ -42,7 +42,8 @@ const Navbar = () => {
               <button onClick={() => auth.fakeSignOut()}>Logout</button>
             ) : (
               <a
-                href={`/logout?post_logout_redirect_uri=${process.env.REACT_APP_BASE_URI}`}
+                // href={`/logout?post_logout_redirect_uri=${process.env.REACT_APP_BASE_URI}`}
+                href="/logout"
               >
                 Logout
               </a>
