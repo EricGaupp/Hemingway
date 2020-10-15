@@ -50,16 +50,25 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setAuthenticated(false);
   }
 
+  const fetchAuth = async (authData: Promise<IUserDetails>) => {
+    setFetching(true);
+    const clientPrincipal = await authData;
+    //Authenticate via proper role
+    setUser(clientPrincipal);
+    if (
+      clientPrincipal.userRoles.filter((role: string) => {
+        return role === "user";
+      }).length > 0
+    ) {
+      setAuthenticated(true);
+    }
+    setFetching(false);
+  };
+
   useEffect(() => {
-    authPromise.then((authData: IUserDetails) => {
-      if (authData?.userId) {
-        console.log("found user id");
-        setUser(authData);
-        setAuthenticated(true);
-      }
-      setFetching(false);
-    });
+    fetchAuth(authPromise);
   }, []);
+
   return (
     <authContext.Provider
       value={{ authenticated, fetching, user, fakeSignIn, fakeSignOut }}
