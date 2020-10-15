@@ -78,11 +78,11 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <ApolloProvider client={client}>
-        <AuthProvider>
+      <AuthProvider>
+        <ApolloProvider client={client}>
           <App />
-        </AuthProvider>
-      </ApolloProvider>
+        </ApolloProvider>
+      </AuthProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
