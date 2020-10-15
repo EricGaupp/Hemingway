@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
-import { authContext, IUserDetails } from "./hooks/useAuth";
+import { authContext, AuthResponse, UserDetails } from "./hooks/useAuth";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import App from "./App";
 import "./styles/tailwind.css";
@@ -12,17 +12,17 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-const authPromise =
+const authPromise: Promise<AuthResponse> =
   process.env.NODE_ENV === "development"
-    ? new Promise<IUserDetails | null>((resolve) => {
-        resolve(null);
+    ? new Promise((resolve) => {
+        resolve({ clientPrincipal: null });
       })
     : fetch("/.auth/me").then((res) => res.json());
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [authenticated, setAuthenticated] = useState<boolean>(false);
   const [fetching, setFetching] = useState<boolean>(true);
-  const [user, setUser] = useState<IUserDetails>({
+  const [user, setUser] = useState<UserDetails | null>({
     userId: "",
     userDetails: "",
     identityProvider: "",
@@ -50,16 +50,13 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setAuthenticated(false);
   }
 
-  const fetchAuth = async (authData: Promise<IUserDetails>) => {
+  const fetchAuth = async (authData: Promise<AuthResponse>) => {
     setFetching(true);
-    const clientPrincipal = await authData;
+    const response = await authData;
+    const { clientPrincipal } = response;
     //Authenticate via proper role
     setUser(clientPrincipal);
-    if (
-      clientPrincipal.userRoles.filter((role: string) => {
-        return role === "user";
-      }).length > 0
-    ) {
+    if (clientPrincipal?.userRoles.includes("user")) {
       setAuthenticated(true);
     }
     setFetching(false);

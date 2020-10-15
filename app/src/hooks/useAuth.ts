@@ -1,14 +1,18 @@
 import { createContext, useContext } from "react";
 
 export type AuthContextProps = {
-  user: IUserDetails | null;
+  user: UserDetails | null;
   fetching: boolean;
   authenticated: boolean;
   fakeSignIn: () => void;
   fakeSignOut: () => void;
 };
 
-export type IUserDetails = {
+export type AuthResponse = {
+  clientPrincipal: UserDetails | null;
+};
+
+export type UserDetails = {
   identityProvider: string;
   userId: string;
   userDetails: string;
