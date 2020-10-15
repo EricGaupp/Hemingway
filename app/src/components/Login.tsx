@@ -28,7 +28,9 @@ const Login = () => {
       >
         Twitter
       </a>
-      <button onClick={() => auth.fakeSignIn()}>Fake Login</button>
+      {process.env.NODE_ENV === "development" && (
+        <button onClick={() => auth.fakeSignIn()}>Fake Login</button>
+      )}
     </div>
   );
 };
