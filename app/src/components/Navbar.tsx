@@ -41,11 +41,7 @@ const Navbar = () => {
             {process.env.NODE_ENV === "development" ? (
               <button onClick={() => auth.fakeSignOut()}>Logout</button>
             ) : (
-              <a
-                href={`/logout?post_logout_redirect_uri=${process.env.REACT_APP_BASE_URI}`}
-              >
-                Logout
-              </a>
+              <a href={`/logout?post_logout_redirect_uri=/logout`}>Logout</a>
             )}
           </div>
         ) : (
