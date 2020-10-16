@@ -7,7 +7,7 @@ const Login = () => {
 
   if (auth.authenticated) return <Redirect to="/dashboard" />;
   return (
-    <div className="container mx-auto flex flex-col">
+    <div>
       <a href="/login/aad?post_login_redirect_uri=/dashboard">Microsoft</a>
       <a href="/login/facebook?post_login_redirect_uri=/dashboard">Facebook</a>
       <a href="/login/google?post_login_redirect_uri=/dashboard">Google</a>

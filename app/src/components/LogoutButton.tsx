@@ -5,7 +5,7 @@ const LogoutButton = () => {
   const { fakeSignOut } = useAuth();
 
   return (
-    <div className="text-sm text-white lg:mt-0">
+    <div className="text-sm text-white">
       {process.env.NODE_ENV === "development" ? (
         <button onClick={() => fakeSignOut()}>Logout</button>
       ) : (

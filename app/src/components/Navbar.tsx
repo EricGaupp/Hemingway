@@ -10,11 +10,11 @@ const Navbar = () => {
   const { pathname } = useLocation();
 
   return (
-    <nav className="flex items-center justify-between flex-wrap bg-blue-800 p-6">
-      <div className="flex items-center flex-shrink-0 text-white mr-6">
-        <span>Hemingway</span>
-      </div>
-      <div className="lg:flex lg:items-center lg:w-auto lg:justify-end">
+    <nav className="w-100 flex justify-center items-center bg-blue-800 p-6">
+      <div className="container flex justify-between items-center flex-wrap">
+        <div className="text-white mr-6">
+          <span>Hemingway</span>
+        </div>
         {authenticated ? (
           <LogoutButton />
         ) : pathname === "/login" ? (
