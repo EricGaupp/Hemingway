@@ -12,7 +12,6 @@
     "@types/react": "^16.9.49",
     "@types/react-dom": "^16.9.8",
     "@types/react-router-dom": "^5.1.5",
-    "antd": "^4.6.4",
     "graphql": "^15.3.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -20,8 +19,14 @@
     "react-scripts": "3.4.3",
     "typescript": "^3.7.5"
   },
+  "devDependencies": {
+    "autoprefixer": "^10.0.0",
+    "postcss-cli": "^8.0.0",
+    "tailwindcss": "^1.8.10"
+  },
   "scripts": {
-    "start": "react-scripts start",
+    "build:style": "tailwind build src/styles/index.css -o src/styles/tailwind.css",
+    "start": "npm run build:style && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
