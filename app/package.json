@@ -26,8 +26,9 @@
   },
   "scripts": {
     "build:tailwind": "tailwind build src/styles/index.css -o src/styles/tailwind.css",
+    "prod:build": "NODE_ENV=production npm run build:tailwind",
     "prestart": "npm run build:tailwind",
-    "prebuild": "npm run build:tailwind",
+    "prebuild": "npm run prod:build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
