@@ -25,8 +25,11 @@
     "tailwindcss": "^1.8.10"
   },
   "scripts": {
-    "build:style": "tailwind build src/styles/index.css -o src/styles/tailwind.css",
-    "start": "npm run build:style && react-scripts start",
+    "build:tailwind": "tailwind build src/styles/index.css -o src/styles/tailwind.css",
+    "prod:build": "NODE_ENV=production npm run build:tailwind",
+    "prestart": "npm run build:tailwind",
+    "prebuild": "npm run prod:build",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

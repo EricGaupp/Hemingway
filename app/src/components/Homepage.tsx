@@ -5,10 +5,10 @@ import { useAuth } from "../hooks/useAuth";
 const Homepage = () => {
   const auth = useAuth();
 
-  if (auth.authenticated) return <Redirect to="/dashboard" />;
+  if (auth.authenticated) return <Redirect to="/dashboard/home" />;
 
   return (
-    <div>
+    <div className="container">
       <h5>Homepage</h5>
     </div>
   );
