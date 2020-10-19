@@ -10,7 +10,7 @@ const Navbar = () => {
   const { pathname } = useLocation();
 
   return (
-    <nav className="w-100 flex justify-center items-center bg-blue-800 p-6">
+    <nav className="w-full flex justify-center items-center bg-blue-800 p-6">
       <div className="container flex justify-between items-center flex-wrap">
         <div className="text-white mr-6">
           <span>Hemingway</span>

@@ -11,7 +11,7 @@ const authorsQuery = gql`
   }
 `;
 
-const GraphQLData = () => {
+const DashboardHome = () => {
   const { loading, error, data } = useQuery(authorsQuery);
   if (loading) return <h5>Loading...</h5>;
   if (error) {
@@ -27,15 +27,4 @@ const GraphQLData = () => {
   );
 };
 
-class Dashboard extends React.Component<{}, {}> {
-  render() {
-    return (
-      <div>
-        <h4>GraphQL Data</h4>
-        <GraphQLData />
-      </div>
-    );
-  }
-}
-
-export default Dashboard;
+export default DashboardHome;
